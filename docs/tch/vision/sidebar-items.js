@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["alexnet","cifar","convmixer","dataset","densenet","dinov2","efficientnet","image","imagenet","inception","mnist","mobilenet","resnet","squeezenet","vgg"]};

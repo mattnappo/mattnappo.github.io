@@ -1,0 +1,4 @@
+(function() {var implementors = {
+"autodep":[["impl&lt;T: <a class=\"trait\" href=\"autodep/rpc/worker_server/trait.Worker.html\" title=\"trait autodep::rpc::worker_server::Worker\">Worker</a>&gt; <a class=\"trait\" href=\"tonic/server/trait.NamedService.html\" title=\"trait tonic::server::NamedService\">NamedService</a> for <a class=\"struct\" href=\"autodep/rpc/worker_server/struct.WorkerServer.html\" title=\"struct autodep::rpc::worker_server::WorkerServer\">WorkerServer</a>&lt;T&gt;"]],
+"tonic":[]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

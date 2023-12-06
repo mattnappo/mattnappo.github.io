@@ -1,0 +1,159 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Safetensors"><title>safetensors - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="safetensors" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.0 (8ede3aae2 2023-07-12)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../safetensors/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../safetensors/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate safetensors</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.3.3</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">safetensors</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/safetensors/lib.rs.html#1-169">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="safetensors"><a href="#safetensors">Safetensors</a></h2>
+<p>This repository implements a new simple format for storing tensors
+safely (as opposed to pickle) and that is still fast (zero-copy).</p>
+<h3 id="installation"><a href="#installation">Installation</a></h3><h4 id="pip"><a href="#pip">Pip</a></h4>
+<p>You can install safetensors via the pip manager:</p>
+<div class="example-wrap"><pre class="language-bash"><code>pip install safetensors
+</code></pre></div><h4 id="from-source"><a href="#from-source">From source</a></h4>
+<p>For the sources, you need Rust</p>
+<div class="example-wrap"><pre class="language-bash"><code># Install Rust
+curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Make sure it&#39;s up to date and using stable channel
+rustup update
+git clone https://github.com/huggingface/safetensors
+cd safetensors/bindings/python
+pip install setuptools_rust
+pip install -e .
+</code></pre></div><h3 id="getting-started"><a href="#getting-started">Getting started</a></h3><div class="example-wrap"><pre class="language-python"><code>import torch
+from safetensors import safe_open
+from safetensors.torch import save_file
+
+tensors = {
+    &quot;weight1&quot;: torch.zeros((1024, 1024)),
+    &quot;weight2&quot;: torch.zeros((1024, 1024))
+}
+save_file(tensors, &quot;model.safetensors&quot;)
+
+tensors = {}
+with safe_open(&quot;model.safetensors&quot;, framework=&quot;pt&quot;, device=&quot;cpu&quot;) as f:
+    for key in f.keys():
+        tensors[key] = f.get_tensor(key)
+</code></pre></div>
+<p><a href="https://huggingface.co/docs/safetensors/index">Python documentation</a></p>
+<h3 id="format"><a href="#format">Format</a></h3>
+<ul>
+<li>8 bytes: <code>N</code>, an unsigned little-endian 64-bit integer, containing the size of the header</li>
+<li>N bytes: a JSON UTF-8 string representing the header.
+<ul>
+<li>The header data MUST begin with a <code>{</code> character (0x7B).</li>
+<li>The header data MAY be trailing padded with whitespace (0x20).</li>
+<li>The header is a dict like <code>{&quot;TENSOR_NAME&quot;: {&quot;dtype&quot;: &quot;F16&quot;, &quot;shape&quot;: [1, 16, 256], &quot;data_offsets&quot;: [BEGIN, END]}, &quot;NEXT_TENSOR_NAME&quot;: {...}, ...}</code>,
+<ul>
+<li><code>data_offsets</code> point to the tensor data relative to the beginning of the byte buffer (i.e. not an absolute position in the file),
+with <code>BEGIN</code> as the starting offset and <code>END</code> as the one-past offset (so total tensor byte size = <code>END - BEGIN</code>).</li>
+</ul>
+</li>
+<li>A special key <code>__metadata__</code> is allowed to contain free form string-to-string map. Arbitrary JSON is not allowed, all values must be strings.</li>
+</ul>
+</li>
+<li>Rest of the file: byte-buffer.</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Duplicate keys are disallowed. Not all parsers may respect this.</li>
+<li>In general the subset of JSON is implicitly decided by <code>serde_json</code> for
+this library. Anything obscure might be modified at a later time, that odd ways
+to represent integer, newlines and escapes in utf-8 strings. This would only
+be done for safety concerns</li>
+<li>Tensor values are not checked against, in particular NaN and +/-Inf could
+be in the file</li>
+<li>Empty tensors (tensors with 1 dimension being 0) are allowed.
+They are not storing any data in the databuffer, yet retaining size in the header.
+They don’t really bring a lot of values but are accepted since they are valid tensors
+from traditional tensor libraries perspective (torch, tensorflow, numpy, ..).</li>
+<li>0-rank Tensors (tensors with shape <code>[]</code>) are allowed, they are merely a scalar.</li>
+<li>The byte buffer needs to be entirely indexed, and cannot contain holes. This prevents
+the creation of polyglot files.</li>
+</ul>
+<h3 id="yet-another-format-"><a href="#yet-another-format-">Yet another format ?</a></h3>
+<p>The main rationale for this crate is to remove the need to use
+<code>pickle</code> on <code>PyTorch</code> which is used by default.
+There are other formats out there used by machine learning and more general
+formats.</p>
+<p>Let’s take a look at alternatives and why this format is deemed interesting.
+This is my very personal and probably biased view:</p>
+<div><table><thead><tr><th>Format</th><th>Safe</th><th>Zero-copy</th><th>Lazy loading</th><th>No file size limit</th><th>Layout control</th><th>Flexibility</th><th>Bfloat16</th></tr></thead><tbody>
+<tr><td>pickle (PyTorch)</td><td>✗</td><td>✗</td><td>✗</td><td>🗸</td><td>✗</td><td>🗸</td><td>🗸</td></tr>
+<tr><td>H5 (Tensorflow)</td><td>🗸</td><td>✗</td><td>🗸</td><td>🗸</td><td>~</td><td>~</td><td>✗</td></tr>
+<tr><td>SavedModel (Tensorflow)</td><td>🗸</td><td>✗</td><td>✗</td><td>🗸</td><td>🗸</td><td>✗</td><td>🗸</td></tr>
+<tr><td>MsgPack (flax)</td><td>🗸</td><td>🗸</td><td>✗</td><td>🗸</td><td>✗</td><td>✗</td><td>🗸</td></tr>
+<tr><td>Protobuf (ONNX)</td><td>🗸</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>✗</td><td>🗸</td></tr>
+<tr><td>Cap’n’Proto</td><td>🗸</td><td>🗸</td><td>~</td><td>🗸</td><td>🗸</td><td>~</td><td>✗</td></tr>
+<tr><td>Arrow</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>?</td><td>✗</td></tr>
+<tr><td>Numpy (npy,npz)</td><td>🗸</td><td>?</td><td>?</td><td>✗</td><td>🗸</td><td>✗</td><td>✗</td></tr>
+<tr><td>pdparams (Paddle)</td><td>✗</td><td>✗</td><td>✗</td><td>🗸</td><td>✗</td><td>🗸</td><td>🗸</td></tr>
+<tr><td>SafeTensors</td><td>🗸</td><td>🗸</td><td>🗸</td><td>🗸</td><td>🗸</td><td>✗</td><td>🗸</td></tr>
+</tbody></table>
+</div>
+<ul>
+<li>Safe: Can I use a file randomly downloaded and expect not to run arbitrary code ?</li>
+<li>Zero-copy: Does reading the file require more memory than the original file ?</li>
+<li>Lazy loading: Can I inspect the file without loading everything ? And loading only
+some tensors in it without scanning the whole file (distributed setting) ?</li>
+<li>Layout control: Lazy loading, is not necessarily enough since if the information about tensors is spread out in your file, then even if the information is lazily accessible you might have to access most of your file to read the available tensors (incurring many DISK -&gt; RAM copies). Controlling the layout to keep fast access to single tensors is important.</li>
+<li>No file size limit: Is there a limit to the file size ?</li>
+<li>Flexibility: Can I save custom code in the format and be able to use it later with zero extra code ? (~ means we can store more than pure tensors, but no custom code)</li>
+<li>Bfloat16: Does the format support native bfloat16 (meaning no weird workarounds are
+necessary)? This is becoming increasingly important in the ML world.</li>
+</ul>
+<h3 id="main-oppositions"><a href="#main-oppositions">Main oppositions</a></h3>
+<ul>
+<li>Pickle: Unsafe, runs arbitrary code</li>
+<li>H5: Apparently now discouraged for TF/Keras. Seems like a great fit otherwise actually. Some classic use after free issues: <a href="https://www.cvedetails.com/vulnerability-list/vendor_id-15991/product_id-35054/Hdfgroup-Hdf5.html">https://www.cvedetails.com/vulnerability-list/vendor_id-15991/product_id-35054/Hdfgroup-Hdf5.html</a>. On a very different level than pickle security-wise. Also 210k lines of code vs ~400 lines for this lib currently.</li>
+<li>SavedModel: Tensorflow specific (it contains TF graph information).</li>
+<li>MsgPack: No layout control to enable lazy loading (important for loading specific parts in distributed setting)</li>
+<li>Protobuf: Hard 2Go max file size limit</li>
+<li>Cap’n’proto: Float16 support is not present <a href="https://capnproto.org/language.html#built-in-types">link</a> so using a manual wrapper over a byte-buffer would be necessary. Layout control seems possible but not trivial as buffers have limitations <a href="https://stackoverflow.com/questions/48458839/capnproto-maximum-filesize">link</a>.</li>
+<li>Numpy (npz): No <code>bfloat16</code> support. Vulnerable to zip bombs (DOS). Not zero-copy.</li>
+<li>Arrow: No <code>bfloat16</code> support. Seem to require decoding <a href="https://arrow.apache.org/docs/python/parquet.html#reading-parquet-and-memory-mapping">link</a></li>
+</ul>
+<h3 id="notes"><a href="#notes">Notes</a></h3>
+<ul>
+<li>
+<p>Zero-copy: No format is really zero-copy in ML, it needs to go from disk to RAM/GPU RAM (that takes time). On CPU, if the file is already in cache, then it can
+truly be zero-copy, whereas on GPU there is not such disk cache, so a copy is always required
+but you can bypass allocating all the tensors on CPU at any given point.
+SafeTensors is not zero-copy for the header. The choice of JSON is pretty arbitrary, but since deserialization is &lt;&lt;&lt; of the time required to load the actual tensor data and is readable I went that way, (also space is &lt;&lt;&lt; to the tensor data).</p>
+</li>
+<li>
+<p>Endianness: Little-endian. This can be modified later, but it feels really unnecessary at the
+moment.</p>
+</li>
+<li>
+<p>Order: ‘C’ or row-major. This seems to have won. We can add that information later if needed.</p>
+</li>
+<li>
+<p>Stride: No striding, all tensors need to be packed before being serialized. I have yet to see a case where it seems useful to have a strided tensor stored in serialized format.</p>
+</li>
+</ul>
+<h3 id="benefits"><a href="#benefits">Benefits</a></h3>
+<p>Since we can invent a new format we can propose additional benefits:</p>
+<ul>
+<li>
+<p>Prevent DOS attacks: We can craft the format in such a way that it’s almost
+impossible to use malicious files to DOS attack a user. Currently, there’s a limit
+on the size of the header of 100MB to prevent parsing extremely large JSON.
+Also when reading the file, there’s a guarantee that addresses in the file
+do not overlap in any way, meaning when you’re loading a file you should never
+exceed the size of the file in memory</p>
+</li>
+<li>
+<p>Faster load: PyTorch seems to be the fastest file to load out in the major
+ML formats. However, it does seem to have an extra copy on CPU, which we
+can bypass in this lib by using <code>torch.UntypedStorage.from_file</code>.
+Currently, CPU loading times are extremely fast with this lib compared to pickle.
+GPU loading times are as fast or faster than PyTorch equivalent.
+Loading first on CPU with memmapping with torch, and then moving all tensors to GPU seems
+to be faster too somehow (similar behavior in torch pickle)</p>
+</li>
+<li>
+<p>Lazy loading: in distributed (multi-node or multi-gpu) settings, it’s nice to be able to
+load only part of the tensors on the various models. For
+<a href="https://huggingface.co/bigscience/bloom">BLOOM</a> using this format enabled
+to load the model on 8 GPUs from 10mn with regular PyTorch weights down to 45s.
+This really speeds up feedbacks loops when developing on the model. For instance
+you don’t have to have separate copies of the weights when changing the distribution
+strategy (for instance Pipeline Parallelism vs Tensor Parallelism).</p>
+</li>
+</ul>
+</div></details><h2 id="reexports" class="small-section-header"><a href="#reexports">Re-exports</a></h2><ul class="item-table"><li><div class="item-name" id="reexport.serialize"><code>pub use tensor::<a class="fn" href="tensor/fn.serialize.html" title="fn safetensors::tensor::serialize">serialize</a>;</code></div></li><li><div class="item-name" id="reexport.serialize_to_file"><code>pub use tensor::<a class="fn" href="tensor/fn.serialize_to_file.html" title="fn safetensors::tensor::serialize_to_file">serialize_to_file</a>;</code></div></li><li><div class="item-name" id="reexport.Dtype"><code>pub use tensor::<a class="enum" href="tensor/enum.Dtype.html" title="enum safetensors::tensor::Dtype">Dtype</a>;</code></div></li><li><div class="item-name" id="reexport.SafeTensorError"><code>pub use tensor::<a class="enum" href="tensor/enum.SafeTensorError.html" title="enum safetensors::tensor::SafeTensorError">SafeTensorError</a>;</code></div></li><li><div class="item-name" id="reexport.SafeTensors"><code>pub use tensor::<a class="struct" href="tensor/struct.SafeTensors.html" title="struct safetensors::tensor::SafeTensors">SafeTensors</a>;</code></div></li><li><div class="item-name" id="reexport.View"><code>pub use tensor::<a class="trait" href="tensor/trait.View.html" title="trait safetensors::tensor::View">View</a>;</code></div></li></ul><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="slice/index.html" title="mod safetensors::slice">slice</a></div><div class="desc docblock-short">Module handling lazy loading via iterating on slices on the original buffer.</div></li><li><div class="item-name"><a class="mod" href="tensor/index.html" title="mod safetensors::tensor">tensor</a></div><div class="desc docblock-short">Module Containing the most important structures</div></li></ul></section></div></main></body></html>

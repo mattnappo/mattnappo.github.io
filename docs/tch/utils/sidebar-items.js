@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["QEngine"],"fn":["get_num_interop_threads","get_num_threads","has_cuda","has_cudart","has_cusolver","has_hip","has_ipu","has_lapack","has_lazy","has_magma","has_mkl","has_mkldnn","has_mps","has_openmp","has_ort","has_vulkan","has_xla","manual_seed","set_num_interop_threads","set_num_threads","version_cudart","version_cudnn"]};
