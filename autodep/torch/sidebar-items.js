@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Inference","InferenceRequest","InferenceType","InputData"],"struct":["B64Image","Class","Image","InferenceTask","TorchModel"],"type":["TimedInference"]};

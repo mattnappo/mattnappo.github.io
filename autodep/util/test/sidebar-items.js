@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_test_image","load_image_from_disk"]};

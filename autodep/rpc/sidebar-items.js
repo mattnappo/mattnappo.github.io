@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["inference_type","worker_client","worker_server"],"struct":["B64Image","Class","Classes","Empty","Inference","InferenceTask","InferenceType","Stats"]};
